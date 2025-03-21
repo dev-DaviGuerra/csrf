@@ -5,6 +5,10 @@ if (empty($_SESSION['user'])) {
     die('Usuário não autenticado');
 }
 
+$csrf = $_SESSION['csrf_token'];
+if($_GET['csrf_token'] != $csrf){
+    die('CSRF TOKEN não é válido');  
+}
 
 // Se tiver, ele faz a transferencia.
 $contaDestino = $_GET['conta_destino'];
